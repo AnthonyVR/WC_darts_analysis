@@ -1,0 +1,1213 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4. Exploration &#8212; Anthony Van Roost - Darts WC analysis</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="3. Preparation &amp; preprocessing" href="PDC_world_darts_championship_2022_analysis-Copy4.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Anthony Van Roost - Darts WC analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="PDC_world_darts_championship_2022_analysis-Copy2.html">
+   1. Darts world championship analysis
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="PDC_world_darts_championship_2022_analysis-Copy3.html">
+   2. About the data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="PDC_world_darts_championship_2022_analysis-Copy4.html">
+   3. Preparation &amp; preprocessing
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   4. Exploration
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/PDC_world_darts_championship_2022_analysis-Copy5.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FPDC_world_darts_championship_2022_analysis-Copy5.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/PDC_world_darts_championship_2022_analysis-Copy5.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#average-points-per-dart">
+   4.1 Average points per dart
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#throws-per-day">
+   4.2. Throws per day
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#throws-per-match">
+   4.3. Throws per match
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#throws-per-set">
+   4.4 Throws per set
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#average-throw-per-day">
+   4.5. Average throw per day
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   4.6. Conclusion
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>4. Exploration</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#average-points-per-dart">
+   4.1 Average points per dart
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#throws-per-day">
+   4.2. Throws per day
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#throws-per-match">
+   4.3. Throws per match
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#throws-per-set">
+   4.4 Throws per set
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#average-throw-per-day">
+   4.5. Average throw per day
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   4.6. Conclusion
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="exploration">
+<h1>4. Exploration<a class="headerlink" href="#exploration" title="Permalink to this headline">¶</a></h1>
+<p><strong>The main goal of my exploration is to find out whether the players got better as the tournament progressed. Did players play better in the final than in the first rounds?</strong></p>
+<div class="section" id="average-points-per-dart">
+<h2>4.1 Average points per dart<a class="headerlink" href="#average-points-per-dart" title="Permalink to this headline">¶</a></h2>
+<p><strong>Let’s start simple and see how the points have evolved over the days of the tournament. Did the throws get better as the final (day 16) approached?</strong>\</p>
+<p><strong>To Check this, I created a graph with a rolling average of all throws. I chose 3000 as window, because a lower number created noise on the graph and with a higher number, information would be lost.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#average points per dart</span>
+<span class="n">throws</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">3000</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;points&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;day&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/PDC_world_darts_championship_2022_analysis-Copy5_2_1.png" src="_images/PDC_world_darts_championship_2022_analysis-Copy5_2_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="throws-per-day">
+<h2>4.2. Throws per day<a class="headerlink" href="#throws-per-day" title="Permalink to this headline">¶</a></h2>
+<p><strong>Let’s calculate how many darts have been thrown each day, for this I used a groupby and aggregated for the count.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grouped_throws_by_day</span> <span class="o">=</span> <span class="n">throws</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;day&quot;</span><span class="p">)</span>
+<span class="n">throws_by_day</span> <span class="o">=</span> <span class="n">grouped_throws_by_day</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="n">throws_by_day</span> <span class="o">=</span> <span class="n">throws_by_day</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">throws_by_day</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>day</th>
+      <th>type</th>
+      <th>points</th>
+      <th>segment</th>
+      <th>event_points</th>
+      <th>double_attempt</th>
+      <th>team</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1944</td>
+      <td>1944</td>
+      <td>1944</td>
+      <td>1944</td>
+      <td>1944</td>
+      <td>1944</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>3780</td>
+      <td>3780</td>
+      <td>3780</td>
+      <td>3780</td>
+      <td>3780</td>
+      <td>3780</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>4348</td>
+      <td>4348</td>
+      <td>4348</td>
+      <td>4348</td>
+      <td>4348</td>
+      <td>4348</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>3449</td>
+      <td>3449</td>
+      <td>3449</td>
+      <td>3449</td>
+      <td>3449</td>
+      <td>3449</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>4433</td>
+      <td>4433</td>
+      <td>4433</td>
+      <td>4433</td>
+      <td>4433</td>
+      <td>4433</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>1897</td>
+      <td>1897</td>
+      <td>1897</td>
+      <td>1897</td>
+      <td>1897</td>
+      <td>1897</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>2994</td>
+      <td>2994</td>
+      <td>2994</td>
+      <td>2994</td>
+      <td>2994</td>
+      <td>2994</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>4059</td>
+      <td>4059</td>
+      <td>4059</td>
+      <td>4059</td>
+      <td>4059</td>
+      <td>4059</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>4361</td>
+      <td>4361</td>
+      <td>4361</td>
+      <td>4361</td>
+      <td>4361</td>
+      <td>4361</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>3845</td>
+      <td>3845</td>
+      <td>3845</td>
+      <td>3845</td>
+      <td>3845</td>
+      <td>3845</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11</td>
+      <td>3786</td>
+      <td>3786</td>
+      <td>3786</td>
+      <td>3786</td>
+      <td>3786</td>
+      <td>3786</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12</td>
+      <td>3773</td>
+      <td>3773</td>
+      <td>3773</td>
+      <td>3773</td>
+      <td>3773</td>
+      <td>3773</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>13</td>
+      <td>4132</td>
+      <td>4132</td>
+      <td>4132</td>
+      <td>4132</td>
+      <td>4132</td>
+      <td>4132</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>14</td>
+      <td>3720</td>
+      <td>3720</td>
+      <td>3720</td>
+      <td>3720</td>
+      <td>3720</td>
+      <td>3720</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>15</td>
+      <td>2232</td>
+      <td>2232</td>
+      <td>2232</td>
+      <td>2232</td>
+      <td>2232</td>
+      <td>2232</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>16</td>
+      <td>1401</td>
+      <td>1401</td>
+      <td>1401</td>
+      <td>1401</td>
+      <td>1401</td>
+      <td>1401</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Now every column contains the amount of rows for that day, so we can use every column to plot this on a bar graph. Let’s go for the ‘type’ column.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#throws per day</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">throws_by_day</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">],</span> <span class="n">throws_by_day</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Dart throws per day&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/PDC_world_darts_championship_2022_analysis-Copy5_6_0.png" src="_images/PDC_world_darts_championship_2022_analysis-Copy5_6_0.png" />
+</div>
+</div>
+<p><strong>Okay, cool. Now let’s take this a step further</strong></p>
+</div>
+<div class="section" id="throws-per-match">
+<h2>4.3. Throws per match<a class="headerlink" href="#throws-per-match" title="Permalink to this headline">¶</a></h2>
+<p><strong>In the previous chart, we saw that on the last day the least darts are thrown. This is not because players were better that day so they had to throw less darts, this is just because only 1 match had been played that day. So let’s try to graph the amount of darts thrown per match</strong></p>
+<p><strong>To do this, we have to find a way to calculate how many matches have been played each day. But how do we do this? We don’t have any information about match numbers. But we do have other information: <br />
+We know that a game ends when a certain amount of sets has been played, and thus a new game starts when the set_scores are reset to zero. So we can try to find rows where the set_scores feature change from any number to zero, indicating a new game has started.</strong></p>
+<p><strong>To do this I checked for the following condition: if a set_score is &gt; 0 and the set score of the next row is 0, it indicates a new game has started. This could happen for both set_score_home as set_score_away, so I used ‘or’ to check for both conditions.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">matches</span> <span class="o">=</span> <span class="n">score_changes</span><span class="p">[((</span><span class="n">score_changes</span><span class="p">[</span><span class="s1">&#39;set_score_home&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>  <span class="o">&amp;</span> <span class="p">(</span><span class="n">score_changes</span><span class="p">[</span><span class="s1">&#39;set_score_home&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="o">|</span> <span class="p">((</span><span class="n">score_changes</span><span class="p">[</span><span class="s1">&#39;set_score_away&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>  <span class="o">&amp;</span> <span class="p">(</span><span class="n">score_changes</span><span class="p">[</span><span class="s1">&#39;set_score_away&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Now we just have to group the results by day, just like we did previously.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grouped_matches_by_day</span> <span class="o">=</span> <span class="n">matches</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;day&quot;</span><span class="p">)</span>
+<span class="n">matches_by_day</span> <span class="o">=</span> <span class="n">grouped_matches_by_day</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="n">matches_by_day</span> <span class="o">=</span> <span class="n">matches_by_day</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">matches_by_day</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>day</th>
+      <th>type</th>
+      <th>points</th>
+      <th>segment</th>
+      <th>event_points</th>
+      <th>double_attempt</th>
+      <th>team</th>
+      <th>leg_points_home</th>
+      <th>leg_pints_away</th>
+      <th>leg_score_home</th>
+      <th>leg_score_away</th>
+      <th>set_score_home</th>
+      <th>set_score_away</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>13</td>
+      <td>6</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6</td>
+      <td>6</td>
+      <td>6</td>
+      <td>6</td>
+      <td>6</td>
+      <td>6</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>14</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>15</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Great. I checked this with the match information only and this is right. Except for the last column. For some reason the set_score was not reset to zero after the final match. On this day only 1 match had been played, so I manually added this row.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">matches_by_day</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;day&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>  <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Now we can plot the amount of matches together with the amount of darts thrown per match, to have an idea if less darts were needed to finish matches in the last days of the tournament.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span> <span class="c1"># Create matplotlib axes</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span> <span class="c1"># Create another axes that shares the same x-axis as ax.</span>
+
+<span class="n">width</span> <span class="o">=</span> <span class="mf">0.4</span>
+
+<span class="n">throws_by_day</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">matches_by_day</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Amount of matches&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Darts thrown&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Amount of matches per day&quot;</span><span class="p">,</span> <span class="s2">&quot;Darts thrown per day&quot;</span><span class="p">],</span>
+           <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper center&quot;</span><span class="p">,</span>        <span class="c1"># Position of the legend</span>
+           <span class="n">borderaxespad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+           <span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">})</span> 
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/PDC_world_darts_championship_2022_analysis-Copy5_17_0.png" src="_images/PDC_world_darts_championship_2022_analysis-Copy5_17_0.png" />
+</div>
+</div>
+<p><strong>Strange. On the last days much more darts where thrown per match in comparison with the first days. Did the players play then? In 4.1 we already found out that this could not be the case.</strong></p>
+<p><strong>The problem here is that a match doesn’t always contain the same amount of sets. Matches at the beginning of the tournament for example only contained 3 sets, while the finale contained 7. We have to compare with sets instead of matches.</strong></p>
+</div>
+<div class="section" id="throws-per-set">
+<h2>4.4 Throws per set<a class="headerlink" href="#throws-per-set" title="Permalink to this headline">¶</a></h2>
+<p><strong>We can do the same thing as we did before, but then for sets.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sets</span> <span class="o">=</span> <span class="n">score_changes</span><span class="p">[((</span><span class="n">score_changes</span><span class="p">[</span><span class="s1">&#39;leg_score_home&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>  <span class="o">&amp;</span> <span class="p">(</span><span class="n">score_changes</span><span class="p">[</span><span class="s1">&#39;leg_score_home&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="o">|</span> <span class="p">((</span><span class="n">score_changes</span><span class="p">[</span><span class="s1">&#39;leg_score_away&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>  <span class="o">&amp;</span> <span class="p">(</span><span class="n">score_changes</span><span class="p">[</span><span class="s1">&#39;leg_score_away&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grouped_sets_by_day</span> <span class="o">=</span> <span class="n">sets</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;day&quot;</span><span class="p">)</span>
+<span class="n">sets_by_day</span> <span class="o">=</span> <span class="n">grouped_sets_by_day</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="n">sets_by_day</span> <span class="o">=</span> <span class="n">sets_by_day</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span> <span class="c1"># Create matplotlib axes</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span> <span class="c1"># Create another axes that shares the same x-axis as ax.</span>
+
+<span class="n">width</span> <span class="o">=</span> <span class="mf">0.4</span>
+
+<span class="n">throws_by_day</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sets_by_day</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Amount of matches&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Darts thrown&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Amount of sets per day&quot;</span><span class="p">,</span> <span class="s2">&quot;Darts thrown per day&quot;</span><span class="p">],</span>
+           <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper center&quot;</span><span class="p">,</span>        <span class="c1"># Position of the legend</span>
+           <span class="n">borderaxespad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+           <span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">})</span> 
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/PDC_world_darts_championship_2022_analysis-Copy5_24_0.png" src="_images/PDC_world_darts_championship_2022_analysis-Copy5_24_0.png" />
+</div>
+</div>
+<p><strong>Fantastic, this looks way better already. Now we can calculate the amount of throws per set grouped by day, by dividing the throws_by_day column by the sets_by_day column</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">throws_per_set</span> <span class="o">=</span> <span class="n">throws_by_day</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">sets_by_day</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
+<span class="n">throws_per_set</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     121.500000
+1     126.000000
+2     131.757576
+3     118.931034
+4     126.657143
+5     126.466667
+6     110.888889
+7     126.843750
+8     132.151515
+9     132.586207
+10    126.200000
+11    125.766667
+12    118.057143
+13    124.000000
+14    117.473684
+15    116.750000
+Name: type, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Graphing this yields:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">throws_per_set</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="_images/PDC_world_darts_championship_2022_analysis-Copy5_28_1.png" src="_images/PDC_world_darts_championship_2022_analysis-Copy5_28_1.png" />
+</div>
+</div>
+<p><strong>Cool, now we can see that the amount of throws per set mostly went down by day, as expected. Except on day 6, apparently great sets were played that day. Now let’s do some simpler stuff again.</strong></p>
+</div>
+<div class="section" id="average-throw-per-day">
+<h2>4.5. Average throw per day<a class="headerlink" href="#average-throw-per-day" title="Permalink to this headline">¶</a></h2>
+<p><strong>Let’s get the throw average per day by diving the sum of points per day by the amount of throws by day</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">throw_average_by_day</span> <span class="o">=</span> <span class="n">throws_by_day</span><span class="p">[(</span><span class="s1">&#39;points&#39;</span><span class="p">,</span>   <span class="s1">&#39;sum&#39;</span><span class="p">)]</span> <span class="o">/</span> <span class="n">throws_by_day</span><span class="p">[(</span><span class="s1">&#39;points&#39;</span><span class="p">,</span>   <span class="s1">&#39;count&#39;</span><span class="p">)]</span>
+<span class="n">throw_average_by_day</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;points&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;day&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/PDC_world_darts_championship_2022_analysis-Copy5_31_1.png" src="_images/PDC_world_darts_championship_2022_analysis-Copy5_31_1.png" />
+</div>
+</div>
+<p><strong>Now let’s check how many triple 20’s (the highest score with one dart) have been throws over the days of the tournament. We can do this checking how many times ‘60’ has been thrown and by aggregating over rows counts per day.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">throws_60</span> <span class="o">=</span> <span class="n">throws</span><span class="p">[</span><span class="n">throws</span><span class="p">[</span><span class="s1">&#39;points&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">60</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">throws_60_by_day</span> <span class="o">=</span> <span class="n">throws_60</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;day&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s2">&quot;points&quot;</span><span class="p">:</span> <span class="s2">&quot;count&quot;</span><span class="p">})</span>
+<span class="n">throws_60_by_day</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>points</th>
+    </tr>
+    <tr>
+      <th>day</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>476</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>910</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>958</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>856</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1078</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>423</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>734</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>929</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1072</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>906</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>950</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>960</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>1018</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>982</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>693</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>393</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>The ratio of triple 20 throws:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">triple_20_ratio</span> <span class="o">=</span> <span class="n">throws_60_by_day</span><span class="p">[</span><span class="s1">&#39;points&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">throws_by_day</span><span class="p">[(</span><span class="s1">&#39;points&#39;</span><span class="p">,</span>   <span class="s1">&#39;count&#39;</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">triple_20_ratio</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>day
+1     24.485597
+2     24.074074
+3     22.033119
+4     24.818788
+5     24.317618
+6     22.298366
+7     24.515698
+8     22.887411
+9     24.581518
+10    23.563069
+11    25.092446
+12    25.443944
+13    24.636980
+14    26.397849
+15    31.048387
+16    28.051392
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Plotting this ratio:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">triple_20_ratio</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;points&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;day&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/PDC_world_darts_championship_2022_analysis-Copy5_38_1.png" src="_images/PDC_world_darts_championship_2022_analysis-Copy5_38_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>4.6. Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p><strong>Although some inconsistencies exist and some days were better than other days, in general we can conclude that the quality of games went up from the first round until the final.</strong></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="PDC_world_darts_championship_2022_analysis-Copy4.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">3. Preparation &amp; preprocessing</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Anthony Van Roost<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
